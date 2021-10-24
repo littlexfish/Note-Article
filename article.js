@@ -60,8 +60,8 @@ function parseArticleList(content) {
       let cata = jsonCatagory[i];
       let parentCata = cata['parent'];
       if(parentCata === undefined || parentCata === null || parentCata != catagory) continue;
-      let visable = cata['visable'];
-      if(visable === undefined || visable === null || visable == false) continue;
+      let visible = cata['visible'];
+      if(visible === undefined || visible === null || visible == false) continue;
       let name = cata['name'];
       catagoryChildren.push(name);
       catagoryUrls.push(window.location.href.split('?')[0] + '?catagory=' + name);
@@ -73,8 +73,8 @@ function parseArticleList(content) {
       let articleInfo = jsonArticle[i];
       let cata = articleInfo['catagory'];
       if(cata != cata) continue;
-      let visable = articleInfo['visable'];
-      if(visable === undefined || visable === null || visable == false) continue;
+      let visible = articleInfo['visible'];
+      if(visible === undefined || visible === null || visible == false) continue;
       let name = articleInfo['name'];
       let id = articleInfo['id'];
       articleChildren.push(name);
@@ -83,11 +83,10 @@ function parseArticleList(content) {
   }
 
   let listElement = document.getElementsByClassName('article_list')[0];
-
-  listElement.innerHTML = '<div class="list_catagory"></div><div class="list_article"></div>';
   
   //list children catagory
   if(catagoryChildren.length !== 0) {
+	listElement.innerHTML += '<div class="list_catagory"></div>'
     let listCatagory = document.getElementsByClassName('list_catagory')[0];
     listCatagory.innerHTML = '子分類<ul class="catagory_ul">';
     for(let i = 0;i < catagoryChildren.length;i++) {
@@ -100,6 +99,7 @@ function parseArticleList(content) {
   
   //list children article
   if(articleChildren.length !== 0) {
+	listElement.innerHTML += '<div class="list_article"></div>'
     let listArticle = document.getElementsByClassName('list_article')[0];
     listArticle.innerHTML = '文章<ul class="article_ul">';
     for(let i = 0;i < articleChildren.length;i++) {

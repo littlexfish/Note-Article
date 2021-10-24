@@ -2,11 +2,11 @@
   "catagory": [
     {
       "name": "test",
-      "visable": true
+      "visible": true
     },
     {
       "name": "test2",
-      "visable": false,
+      "visible": false,
       "parent": "test"
     }
   ],
