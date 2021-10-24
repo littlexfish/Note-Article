@@ -50,7 +50,34 @@ function parseArticleList(content) {
   let articleChildren = [];
   let articleUrls = [];
   
-  if(catagory === null) { //root
+  if(catagory === undefined || catagory === null) { //root
+    for(let i = 0;i < jsonCatagory.length;i++) {
+      let cata = jsonCatagory[i];
+      let parentCata = cata['parent'];
+      if(parentCata === undefined || parentCata === null) {
+		let visible = cata['visible'];
+		if(visible === undefined || visible === null || visible == false) continue;
+		let name = cata['name'];
+		catagoryChildren.push(name);
+		catagoryUrls.push(window.location.href.split('?')[0] + '?catagory=' + name);
+	  }
+    }
+
+    let jsonArticle = json['article'];
+    //children article
+    for(let i = 0;i < jsonArticle.length;i++) {
+      let articleInfo = jsonArticle[i];
+      let cata = articleInfo['catagory'];
+	  if(cata === undefined || cata === null) {
+		let visible = articleInfo['visible'];
+		if(visible === undefined || visible === null) continue;
+		let name = articleInfo['name'];
+		let id = articleInfo['id'];
+		articleChildren.push(name);
+		articleUrls.push('./article.html?id=' + id);
+	  }
+    }
+	
     return;
   }
   else {
@@ -72,13 +99,13 @@ function parseArticleList(content) {
     for(let i = 0;i < jsonArticle.length;i++) {
       let articleInfo = jsonArticle[i];
       let cata = articleInfo['catagory'];
-      if(cata != cata) continue;
+	  if(cata === undefined || cata === null || cata != catagory) continue;
       let visible = articleInfo['visible'];
       if(visible === undefined || visible === null || visible == false) continue;
       let name = articleInfo['name'];
       let id = articleInfo['id'];
       articleChildren.push(name);
-      articleUrls.push(window.location.href.split('?')[0] + '?id=' + id);
+      articleUrls.push('./article.html?id=' + id);
     }
   }
 

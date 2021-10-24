@@ -6,7 +6,7 @@
     },
     {
       "name": "test2",
-      "visible": false,
+      "visible": true,
       "parent": "test"
     }
   ],
