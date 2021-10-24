@@ -2,7 +2,7 @@
 function replaceArticle() {
   let queryString = new URLSearchParams(window.location.search);
   let id = queryString.get('id');
-  if(id === null) {
+  if(id === undefined) {
     return;
   }
   let articleFilePath = 'article/' + id + '.html';
@@ -18,7 +18,7 @@ function replaceArticle() {
 
 
 function findName(id) {
-	if(id === 'undefined') return 'undefined';
+	if(id === undefined) return undefined;
 	let ret;
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.overrideMimeType('application/json');
