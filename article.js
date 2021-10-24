@@ -1,8 +1,8 @@
 
 function replaceArticle() {
-  let queryString = window.location.search;
-  let id = queryString['id'];
-  if(id === 'undefined') {
+  let queryString = new URLSearchParams(window.location.search);
+  let id = queryString.get('id');
+  if(id === null) {
     return;
   }
   let articleFilePath = 'article/' + id + '.html';
@@ -11,23 +11,46 @@ function replaceArticle() {
   getFileContent(articleFilePath, null, function(content) {
     let article = document.getElementsByClassName('article_content')[0];
     
+	document.title = findName(id);
     article.innerHTML = xmlhttp.responseText;
   });
+}
+
+
+function findName(id) {
+	if(id === 'undefined') return 'undefined';
+	let ret;
+	let xmlhttp = new XMLHttpRequest();
+	xmlhttp.overrideMimeType('application/json');
+	xmlhttp.onreadystatechange = function() {
+	  if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+		let json = JSON.parse(xmlhttp.responseText);
+		let allArticle = json['article'];
+		for(let i = 0;i < allArticle.length;i++) {
+			if(allArticle[i]['id'] == id) {
+				ret = allArticle[i]['name'];
+			}
+		}
+	  }
+	}
+	xmlhttp.open("GET", path, false);
+	xmlhttp.send();
+	return ret;
 }
 
 
 function parseArticleList(content) {
   let json = JSON.parse(content);
 
-  let queryString = window.location.search;
-  let catagory = queryString['catagory'];
+  let queryString = new URLSearchParams(window.location.search);
+  let catagory = queryString.get('catagory');
 
   let catagoryChildren = [];
   let catagoryUrls = [];
   let articleChildren = [];
   let articleUrls = [];
-
-  if(catagory === 'undefined') { //root
+  
+  if(catagory === null) { //root
     return;
   }
   else {
@@ -35,7 +58,7 @@ function parseArticleList(content) {
     // children catagory
     for(let i = 0;i < jsonCatagory.length;i++) {
       let cata = jsonCatagory[i];
-      let parentCata = cata["parent"];
+      let parentCata = cata['parent'];
       if(parentCata === 'undefined' && parentCata != catagory) continue;
       let visable = cata['visable'];
       if(visable === 'undefine' && visable == false) continue;
