@@ -72,15 +72,14 @@ function parseArticleList(content) {
       let cata = articleInfo['catagory'];
 	  if(cata === undefined || cata === null) {
 		let visible = articleInfo['visible'];
-		if(visible === undefined || visible === null) continue;
+		if(visible === undefined || visible === null || visible == false) continue;
 		let name = articleInfo['name'];
 		let id = articleInfo['id'];
 		articleChildren.push(name);
-		articleUrls.push('./article.html?id=' + id);
+		articleUrls.push('article.html?id=' + id);
 	  }
     }
 	
-    return;
   }
   else {
     let jsonCatagory = json['catagory'];
