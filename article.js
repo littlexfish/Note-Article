@@ -2,7 +2,7 @@
 function replaceArticle() {
   let queryString = new URLSearchParams(window.location.search);
   let id = queryString.get('id');
-  if(id === undefined) {
+  if(id === undefined || id === null) {
     return;
   }
   let articleFilePath = 'article/' + id + '.html';
@@ -18,7 +18,7 @@ function replaceArticle() {
 
 
 function findName(id) {
-	if(id === undefined) return undefined;
+	if(id === undefined || id === null) return null;
 	let ret;
 	let xmlhttp = new XMLHttpRequest();
 	xmlhttp.overrideMimeType('application/json');
@@ -59,7 +59,7 @@ function parseArticleList(content) {
     for(let i = 0;i < jsonCatagory.length;i++) {
       let cata = jsonCatagory[i];
       let parentCata = cata['parent'];
-      if(parentCata === 'undefined' && parentCata != catagory) continue;
+      if((parentCata === undefined || parentCata === null) && parentCata != catagory) continue;
       let visable = cata['visable'];
       if(visable === 'undefine' && visable == false) continue;
       let name = cata['name'];
