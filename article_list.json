@@ -13,6 +13,7 @@
   "article": [
     {
       "id": -1,
+      "name": "test",
       "catagory": "test",
       "visible": false
     }
