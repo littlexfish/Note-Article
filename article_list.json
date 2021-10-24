@@ -2,7 +2,7 @@
   "catagory": [
     {
       "name": "test",
-      "visable": false
+      "visable": true
     },
     {
       "name": "test2",

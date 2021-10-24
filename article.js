@@ -61,7 +61,7 @@ function parseArticleList(content) {
       let parentCata = cata['parent'];
       if((parentCata === undefined || parentCata === null) && parentCata != catagory) continue;
       let visable = cata['visable'];
-      if(visable === 'undefine' && visable == false) continue;
+      if((visable === undefined || visable === null) || visable == false) continue;
       let name = cata['name'];
       catagoryChildren.push(name);
       catagoryUrls.push(window.location.href.split('?')[0] + '?catagory=' + name);
@@ -74,7 +74,7 @@ function parseArticleList(content) {
       let cata = articleInfo['catagory'];
       if(cata != 'catagory') continue;
       let visable = articleInfo['visable'];
-      if(visable === 'undifine' || visable == false) continue;
+      if((visable === undefined || visable === null) || visable == false) continue;
       let name = articleInfo['name'];
       let id = articleInfo['id'];
       articleChildren.push(name);
