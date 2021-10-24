@@ -1,0 +1,15 @@
+{
+  "catagory": [
+    {
+      "name": "test",
+      "visable": false
+    }
+  ],
+  "article": [
+    {
+      "id": -1,
+      "catagory": "test",
+      "visible": false
+    }
+  ]
+}
