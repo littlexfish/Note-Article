@@ -51,6 +51,8 @@ function parseArticleList(content) {
   let articleUrls = [];
   
   if(catagory === undefined || catagory === null) { //root
+    let jsonCatagory = json['catagory'];
+	// children catagory
     for(let i = 0;i < jsonCatagory.length;i++) {
       let cata = jsonCatagory[i];
       let parentCata = cata['parent'];

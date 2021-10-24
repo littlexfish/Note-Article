@@ -16,6 +16,17 @@
       "name": "test",
       "catagory": "test",
       "visible": true
-    }
+    },
+	{
+      "id": -1,
+      "name": "test1",
+      "catagory": "test2",
+      "visible": true
+    },
+	{
+      "id": -1,
+      "name": "test",
+      "visible": true
+    },
   ]
 }
