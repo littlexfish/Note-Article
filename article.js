@@ -35,8 +35,8 @@ function parseArticleList(content) {
     // children catagory
     for(let i = 0;i < jsonCatagory.length;i++) {
       let cata = jsonCatagory[i];
-      let parent = cate["parent"];
-      if(parent === 'undefined' && parent != catagory) continue;
+      let parentCata = cata["parent"];
+      if(parentCata === 'undefined' && parentCata != catagory) continue;
       let visable = cata['visable'];
       if(visable === 'undefine' && visable == false) continue;
       let name = cata['name'];
