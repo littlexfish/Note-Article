@@ -3,6 +3,11 @@
     {
       "name": "test",
       "visable": false
+    },
+    {
+      "name": "test2",
+      "visable": false,
+      "parent": "test"
     }
   ],
   "article": [
