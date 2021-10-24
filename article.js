@@ -9,9 +9,9 @@ function replaceArticle() {
   
   //get article content
   getFileContent(articleFilePath, null, function(content) {
-    let content = document.getElementById('article_content');
+    let article = document.getElementsByClassName('article_content')[0];
     
-    conetnt.innerHTML = xmlhttp.responseText;
+    article.innerHTML = xmlhttp.responseText;
   });
 }
 
@@ -59,7 +59,7 @@ function parseArticleList(content) {
     }
   }
 
-  let listElement = document.getElementById('article_list');
+  let listElement = document.getElementsByClassName('article_list')[0];
 
   listElement.innerHTML = '<div class="list_catagory"></div><div class="list_article"></div>';
   
@@ -108,5 +108,6 @@ function loadList() {
 }
 
 
-
+loadList();
+replaceArticle();
 
