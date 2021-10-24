@@ -8,7 +8,7 @@ function replaceArticle() {
   let articleFilePath = 'article/' + id + '.html';
   
   //get article content
-  getFileContent(articleFilePath, function(content) {
+  getFileContent(articleFilePath, null, function(content) {
     let content = document.getElementById('article_content');
     
     conetnt.innerHTML = xmlhttp.responseText;
@@ -90,9 +90,9 @@ function parseArticleList(content) {
 }
 
 
-function getFileContent(path, callback) { //callback need content as parameter
+function getFileContent(path, mimeType, callback) { //callback need content as parameter
   let xmlhttp = new XMLHttpRequest();
-  xmlhttp.overrideMimeType("application/json");
+  if(mimeType !== null) xmlhttp.overrideMimeType(mimeType);
   xmlhttp.onreadystatechange = function() {
       if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
           callback(xmlhttp.responseText);
@@ -100,6 +100,11 @@ function getFileContent(path, callback) { //callback need content as parameter
   }
   xmlhttp.open("GET", path, true);
   xmlhttp.send();
+}
+
+
+function loadList() {
+  getFileContent('article_list.json', 'application/json', parseArticleList)
 }
 
 
