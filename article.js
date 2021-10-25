@@ -141,7 +141,7 @@ function parseArticleList(content) {
 }
 
 
-function getFileContent(path, mimeType, callback) { //callback need content as parameter
+/*function getFileContent(path, mimeType, callback) { //callback need content as parameter
   let xmlhttp = new XMLHttpRequest();
   if(mimeType !== null) xmlhttp.overrideMimeType(mimeType);
   xmlhttp.onreadystatechange = function() {
@@ -151,7 +151,7 @@ function getFileContent(path, mimeType, callback) { //callback need content as p
   }
   xmlhttp.open("GET", path, true);
   xmlhttp.send();
-}
+}*/
 
 
 function loadList() {
