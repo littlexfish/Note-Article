@@ -1,4 +1,6 @@
 
+//NOTE: This javascript file need load first on defer
+
 
 function linkTo(direct) {
   window.location.href = direct;

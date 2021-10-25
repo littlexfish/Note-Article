@@ -1,5 +1,10 @@
 
-function replaceArticle() {
+function replaceArticle(title, htmlElement) {
+  let article = document.getElementsByClassName('article')[0];
+  
+  document.title = title;
+  article.innerHTML = htmlElement;
+
   let queryString = new URLSearchParams(window.location.search);
   let id = queryString.get('id');
   if(id === undefined || id === null) {
@@ -7,158 +12,108 @@ function replaceArticle() {
   }
   let articleFilePath = 'article/' + id + '.html';
   
+}
+
+
+function loadHtmlFromJson() {
+  let queryString = new URLSearchParams(window.location.search);
+  let id = queryString.get('id');
+  if(id === undefined || id === null) {
+    return;
+  }
+  let articleFilePath = 'article/' + id + '.json';
+  
   //get article content
-  getFileContent(articleFilePath, null, function(content) {
-    let article = document.getElementsByClassName('article_content')[0];
+  getFileContent(articleFilePath, 'application/json', function(content) {
     
-	document.title = findName(id);
-    article.innerHTML = xmlhttp.responseText;
+	let json = JSON.parse(testJson);
+	
+	let ret = '<div class="article_title">' + json['title'] + '</div>';
+	ret += '<div class="article_keywords" style="font-size: 6px;">' + json['keywords'] + '</div>';
+
+	let content = json['content'];
+	
+	ret += '<div class="article_content">'
+	for(let i = 0;i < content.length;i++) {
+	  let current = content[i];
+	  let type = current['type'];
+	  let insert;
+	  if(type == 'text') insert = getInsertText(current);
+	  else if(type == 'image') insert = getInsertImage(current);
+	  else if(type == 'html') insert = getInsertHtmlElement(current);
+	  if(insert !== undefined || insert !== null) {
+		ret += insert;
+	  }
+    }
+	ret += '</div>';
+	
+	replaceArticle(json['title'], ret);
   });
 }
 
 
-function findName(id) {
-	if(id === undefined || id === null) return null;
-	let ret;
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.overrideMimeType('application/json');
-	xmlhttp.onreadystatechange = function() {
-	  if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-		let json = JSON.parse(xmlhttp.responseText);
-		let allArticle = json['article'];
-		for(let i = 0;i < allArticle.length;i++) {
-			if(allArticle[i]['id'] == id) {
-				ret = allArticle[i]['name'];
-			}
-		}
-	  }
+function getInsertText(currentJsonObj) {
+	if(currentJsonObj['type'] != 'text') return null;
+	let textStyle = currentJsonObj['style'];
+	let textText = currentJsonObj['text'];
+	let wrap = currentJsonObj['wrap'];
+	let ret = '<div';
+	if(typeof textStyle === 'string') {
+		ret += ' class="' + textStyle + '"';
 	}
-	xmlhttp.open("GET", path, false);
-	xmlhttp.send();
+	ret += '>' + textText;
+	if(typeof wrap === 'boolean' && wrap) {
+		ret += '<br>';
+	}
+	ret += '</div>';
+	return ret;
+}
+
+function getInsertImage(currentJsonObj) {
+	if(currentJsonObj['type'] != 'image') return null;
+	let imageSrc = currentJsonObj['src'];
+	let imageWidth = currentJsonObj['width'];
+	let imageAlt = currentJsonObj['alt'];
+	let imageTitle = currentJsonObj['title'];
+	let imageLazy = currentJsonObj['lazy'];
+	let ret = '<img';
+	if(typeof imageSrc === 'string') {
+		ret += ' src="' + imageSrc + '"';
+	}
+	if(imageWidth !== undefined && imageWidth !== null) {
+		ret += ' width="' + imageWidth + '"';
+	}
+	if(imageAlt !== undefined && imageAlt !== null) {
+		ret += ' alt="' + imageAlt + '"';
+	}
+	if(imageTitle !== undefined && imageTitle !== null) {
+		ret += ' title="' + imageTitle + '"';
+	}
+	if(typeof imageLazy === 'boolean' && imageLazy) {
+		ret += ' loading="lazy"';
+	}
+	ret += '></img>';
+	return ret;
+}
+
+function getInsertHtmlElement(currentJsonObj) {
+	if(currentJsonObj['type'] != 'html') return null;
+	let htmlElement = currentJsonObj['element'];
+	let htmlAttr = currentJsonObj['attr'];
+	let needTail = currentJsonObj['needTail'];
+	let ret = '<' + htmlElement;
+	if(htmlAttr !== undefined && htmlAttr !== null) {
+		ret += ' ' + htmlAttr;
+	}
+	ret += '>';
+	if(typeof needTail === 'boolean' && !needTail) {
+		ret += '</' + htmlElement + '>';
+	}
 	return ret;
 }
 
 
-function parseArticleList(content) {
-  let json = JSON.parse(content);
-
-  let queryString = new URLSearchParams(window.location.search);
-  let catagory = queryString.get('catagory');
-
-  let catagoryChildren = [];
-  let catagoryUrls = [];
-  let articleChildren = [];
-  let articleUrls = [];
-  
-  if(catagory === undefined || catagory === null) { //root
-    let jsonCatagory = json['catagory'];
-	// children catagory
-    for(let i = 0;i < jsonCatagory.length;i++) {
-      let cata = jsonCatagory[i];
-      let parentCata = cata['parent'];
-      if(parentCata === undefined || parentCata === null) {
-		let visible = cata['visible'];
-		if(visible === undefined || visible === null || visible == false) continue;
-		let name = cata['name'];
-		catagoryChildren.push(name);
-		catagoryUrls.push(window.location.href.split('?')[0] + '?catagory=' + name);
-	  }
-    }
-
-    let jsonArticle = json['article'];
-    //children article
-    for(let i = 0;i < jsonArticle.length;i++) {
-      let articleInfo = jsonArticle[i];
-      let cata = articleInfo['catagory'];
-	  if(cata === undefined || cata === null) {
-		let visible = articleInfo['visible'];
-		if(visible === undefined || visible === null || visible == false) continue;
-		let name = articleInfo['name'];
-		let id = articleInfo['id'];
-		articleChildren.push(name);
-		articleUrls.push('article.html?id=' + id);
-	  }
-    }
-	
-  }
-  else {
-    let jsonCatagory = json['catagory'];
-    // children catagory
-    for(let i = 0;i < jsonCatagory.length;i++) {
-      let cata = jsonCatagory[i];
-      let parentCata = cata['parent'];
-      if(parentCata === undefined || parentCata === null || parentCata != catagory) continue;
-      let visible = cata['visible'];
-      if(visible === undefined || visible === null || visible == false) continue;
-      let name = cata['name'];
-      catagoryChildren.push(name);
-      catagoryUrls.push(window.location.href.split('?')[0] + '?catagory=' + name);
-    }
-
-    let jsonArticle = json['article'];
-    //children article
-    for(let i = 0;i < jsonArticle.length;i++) {
-      let articleInfo = jsonArticle[i];
-      let cata = articleInfo['catagory'];
-	  if(cata === undefined || cata === null || cata != catagory) continue;
-      let visible = articleInfo['visible'];
-      if(visible === undefined || visible === null || visible == false) continue;
-      let name = articleInfo['name'];
-      let id = articleInfo['id'];
-      articleChildren.push(name);
-      articleUrls.push('./article.html?id=' + id);
-    }
-  }
-
-  let listElement = document.getElementsByClassName('article_list')[0];
-  
-  //list children catagory
-  if(catagoryChildren.length !== 0) {
-	listElement.innerHTML += '<div class="list_catagory"></div>'
-    let listCatagory = document.getElementsByClassName('list_catagory')[0];
-    listCatagory.innerHTML = '子分類<ul class="catagory_ul">';
-    for(let i = 0;i < catagoryChildren.length;i++) {
-      let name = catagoryChildren[i];
-      let urlLink = catagoryUrls[i];
-      listCatagory.innerHTML += '<li><a href="' + urlLink + '">' + name + '</a></li>';
-    }
-    listCatagory.innerHTML += '</ul>';
-  }
-  
-  //list children article
-  if(articleChildren.length !== 0) {
-	listElement.innerHTML += '<div class="list_article"></div>'
-    let listArticle = document.getElementsByClassName('list_article')[0];
-    listArticle.innerHTML = '文章<ul class="article_ul">';
-    for(let i = 0;i < articleChildren.length;i++) {
-      let name = articleChildren[i];
-      let urlLink = articleUrls[i];
-      listArticle.innerHTML += '<li><a href="' + urlLink + '">' + name + '</a></li>';
-    }
-    listArticle.innerHTML += '</ul>';
-  }
-  
-}
 
 
-/*function getFileContent(path, mimeType, callback) { //callback need content as parameter
-  let xmlhttp = new XMLHttpRequest();
-  if(mimeType !== null) xmlhttp.overrideMimeType(mimeType);
-  xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-          callback(xmlhttp.responseText);
-      }
-  }
-  xmlhttp.open("GET", path, true);
-  xmlhttp.send();
-}*/
-
-
-function loadList() {
-  getFileContent('article_list.json', 'application/json', parseArticleList)
-}
-
-
-loadList();
-replaceArticle();
+loadHtmlFromJson();
 

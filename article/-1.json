@@ -1,0 +1,32 @@
+{
+	"title": "test",
+	"keywords": ["test", "t"],
+	"content": [
+		{
+			"type": "text",
+			"style": "background-color: #25F5;",
+			"text": "test",
+			"wrap": true
+		},
+		{
+			"type": "text",
+			"text": "test",
+			"wrap": false
+		},
+		{
+			"type": "image",
+			"src": "https://i.imgur.com/oSCZ5Hu.png",
+			"width": 100,
+			"alt": "冰置八茅",
+			"title": "冰置八茅",
+			"lazy": true
+		},
+		{
+			"type": "html",
+			"element": "hr",
+			"needTail": false
+		}
+	]
+	
+	
+}
