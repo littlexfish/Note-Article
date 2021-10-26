@@ -106,7 +106,7 @@ function getInsertHtmlElement(currentJsonObj) {
 		ret += ' ' + htmlAttr;
 	}
 	ret += '>';
-	if(typeof needTail === 'boolean' && !needTail) {
+	if(typeof needTail !== 'boolean' || needTail) {
 		ret += '</' + htmlElement + '>';
 	}
 	return ret;
