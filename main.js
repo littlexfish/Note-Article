@@ -6,13 +6,20 @@ function linkTo(direct) {
   window.location.href = direct;
 }
 
+function linkToRoot() {
+    linkTo('https://littlexfish.github.io/Note-Article');
+}
 
 function getPathAbsolute(path) {
-  return 'https://littlexfish.github.io/Note-Article/' + path;
+    return 'https://littlexfish.github.io/Note-Article/' + path;
+}
+
+function linkToAbsolute(path) {
+    linkTo(getPathAbsolute(path));
 }
 
 function linkToRelative(path) {
-  linkTo(getPathAbsolute(path));
+    linkTo(path);
 }
 
 function attachMIcon(className = 'svg_icon', scaleX = 1, scaleY = 1) {

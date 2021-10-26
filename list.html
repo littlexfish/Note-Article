@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="utf-8">
+    <title>文章列表</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <script src="main.js" type="text/javascript" defer></script>
+    <script src="list.js" type="text/javascript" defer></script>
+    <div class="top_bar">
+        <ul>
+            <li><a onclick="linkToRoot();">小魚筆記</a></li>
+            <li><a class="choose" onclick="linkToAbsolute('list.html')">文章</a></li>
+        </ul>
+    </div>
+    <div class="sidebar"></div>
+    <div class="list">
+        <button onclick="linkToParentCategory();">Back</button>
+        <button onclick="window.location.reload();">Reload</button>
+        <div class="article_list"></div>
+        <div class="bottom_block"></div>
+    </div>
+</body>
+</html>

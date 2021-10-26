@@ -1,5 +1,5 @@
 {
-  "catagory": [
+  "category": [
     {
       "name": "test",
       "visible": true
@@ -14,13 +14,13 @@
     {
       "id": -1,
       "name": "test",
-      "catagory": "test",
+      "category": "test",
       "visible": true
     },
 	{
       "id": -1,
       "name": "test1",
-      "catagory": "test2",
+      "category": "test2",
       "visible": true
     },
 	{

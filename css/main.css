@@ -1,8 +1,45 @@
 
 
+.html {
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+
+
 .top_bar {
-	
-	
+    width: 100%;
+    height: 50px;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.top_bar a {
+    display: block;
+    padding: 10px;
+    height: 100%;
+    text-decoration: none;
+    font-size: 25px;
+    color: #FFF;
+    background-color: #0000;
+}
+
+.top_bar a.choose:hover {
+    background-color: #58F;
+}
+
+.top_bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #47E;
+    overflow: hidden;
+}
+
+.top_bar ul li {
+    display: inline;
+    float: left;
 }
 
 .sidebar {
@@ -11,13 +48,12 @@
 }
 
 
-
-.article_list .list_catagory, .article_list .list_catagory {
+.article_list .list_category, .article_list .list_category {
 	
 }
 
 
-.list_catagory ul.catagory_ul {
+.list_category ul.category_ul {
 	
 	
 }
@@ -27,12 +63,12 @@
 	
 }
 
+.list {
+	padding-top: 50px;
 
-.article {
-	
 }
 
-.article .article_content {
+.text .article {
 	
 }
 
