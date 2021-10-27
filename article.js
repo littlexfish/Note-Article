@@ -88,7 +88,7 @@ function getInsertImage(currentJsonObj) {
 }
 
 function getInsertHtmlElement(currentJsonObj) {
-    if (currentJsonObj['type'] !== 'html') return null;
+    if(currentJsonObj['type'] !== 'html') return null;
     let htmlElement = currentJsonObj['element'];
     let htmlAttr = currentJsonObj['attr'];
     let needTail = currentJsonObj['needTail'];
