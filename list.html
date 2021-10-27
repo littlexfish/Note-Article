@@ -8,17 +8,30 @@
 <body>
     <script src="main.js" type="text/javascript" defer></script>
     <script src="list.js" type="text/javascript" defer></script>
-    <div class="top_bar">
-        <ul>
-            <li><a onclick="linkToRoot();">小魚筆記</a></li>
-            <li><a class="choose" onclick="linkToAbsolute('list.html')">文章</a></li>
-        </ul>
-    </div>
+    <div class="top_bar"></div>
     <div class="sidebar"></div>
     <div class="list">
-        <button onclick="linkToParentCategory();">Back</button>
-        <button onclick="window.location.reload();">Reload</button>
-        <div class="article_list"></div>
+        <button onclick="linkToParentCategory();">回上一層</button>
+        <div class="article_list">
+            <div class="list_category">
+                子分類
+                <ul class="category_ul">
+                    <li><a>name0</a></li>
+                    <li><a>name1</a></li>
+                    <li><a>name2</a></li>
+                    <li><a>name3</a></li>
+                </ul>
+            </div>
+            <div class="list_article">
+                文章
+                <ul class="article_ul">
+                    <li><a>name0</a></li>
+                    <li><a>name1</a></li>
+                    <li><a>name2</a></li>
+                    <li><a>name3</a></li>
+                </ul>
+            </div>
+        </div>
         <div class="bottom_block"></div>
     </div>
 </body>

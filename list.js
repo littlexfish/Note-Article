@@ -75,28 +75,26 @@ function parseArticleList(content) {
 
     //list children category
     if(categoryChildren.length !== 0) {
-        listElement.innerHTML += '<div class="list_category"></div>'
-        let listcategory = document.getElementsByClassName('list_category')[0];
-        listcategory.innerHTML = '子分類<ul class="category_ul">';
+        listElement.innerHTML += '<div class="list_category">'
+        listElement.innerHTML += '子分類<ul class="category_ul">';
         for(let i = 0;i < categoryChildren.length;i++) {
             let name = categoryChildren[i];
             let urlLink = categoryUrls[i];
-            listcategory.innerHTML += '<li><a href="' + urlLink + '">' + name + '</a></li>';
+            listElement.innerHTML += '<li><a href="' + urlLink + '">' + name + '</a></li>';
         }
-        listcategory.innerHTML += '</ul>';
+        listElement.innerHTML += '</ul></div>';
     }
 
     //list children article
     if(articleChildren.length !== 0) {
-        listElement.innerHTML += '<div class="list_article"></div>'
-        let listArticle = document.getElementsByClassName('list_article')[0];
-        listArticle.innerHTML = '文章<ul class="article_ul">';
+        listElement.innerHTML += '<div class="list_article">'
+        listElement.innerHTML += '文章<ul class="article_ul">';
         for(let i = 0;i < articleChildren.length;i++) {
             let name = articleChildren[i];
             let urlLink = articleUrls[i];
-            listArticle.innerHTML += '<li><a href="' + urlLink + '">' + name + '</a></li>';
+            listElement.innerHTML += '<li><a href="' + urlLink + '">' + name + '</a></li>';
         }
-        listArticle.innerHTML += '</ul>';
+        listElement.innerHTML += '</ul></div>';
     }
 
 }

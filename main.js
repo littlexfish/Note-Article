@@ -1,9 +1,8 @@
-
 //NOTE: This javascript file need load first on defer
 
 
 function linkTo(direct) {
-  window.location.href = direct;
+    window.location.href = direct;
 }
 
 function linkToRoot() {
@@ -23,10 +22,10 @@ function linkToRelative(path) {
 }
 
 function attachMIcon(className = 'svg_icon', scaleX = 1, scaleY = 1) {
-	let svgElement = document.getElementsByClassName(className);
-	
-	//svg html
-	let svgHTML = '<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">\
+    let svgElement = document.getElementsByClassName(className);
+
+    //svg html
+    let svgHTML = '<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">\
 	  <g transform="scale(' + scaleX + ',' + scaleY + ')">\
       <rect x="-0" y="0" width="500" height="500" style="fill: rgb(200, 200, 255);"></rect>\
       <g transform="matrix(0.996195, -0.087155, 0.087155, 0.996195, -12.104853, 12.753579)">\
@@ -48,43 +47,43 @@ function attachMIcon(className = 'svg_icon', scaleX = 1, scaleY = 1) {
       </g>\
 	  </g>\
     </svg>';
-	
-	for(let i = 0;i < svgElement.length;i++) {
-		svgElement.item(i).innerHTML = svgHTML;
-	}
-	
+
+    for (let i = 0; i < svgElement.length; i++) {
+        svgElement.item(i).innerHTML = svgHTML;
+    }
+
 }
 
 function getFileContent(path, mimeType, callback) { //callback need content as parameter
-  let xmlhttp = new XMLHttpRequest();
-  if(mimeType !== null) xmlhttp.overrideMimeType(mimeType);
-  xmlhttp.onreadystatechange = function() {
-      if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-          callback(xmlhttp.responseText);
-      }
-  }
-  xmlhttp.open("GET", path, true);
-  xmlhttp.send();
+    let xmlhttp = new XMLHttpRequest();
+    if (mimeType !== null) xmlhttp.overrideMimeType(mimeType);
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
+            callback(xmlhttp.responseText);
+        }
+    }
+    xmlhttp.open("GET", path, true);
+    xmlhttp.send();
 }
 
 function top_bar_render() {
-  getFileContent('part/top_bar.html', null, function(content) {
-    document.getElementsByClassName('top_bar')[0].innerHTML = content;
-  });
+    document.getElementsByClassName('top_bar')[0].innerHTML =
+        '<ul>\n\
+        <li><a onclick="linkToRoot();">小魚筆記</a></li>\
+        <li><a class="choose" onclick="linkToAbsolute(\'list.html\')">文章</a></li>\
+        </ul>';
+
 }
 
 function sidebar_render() {
-  getFileContent('part/sidebar.html', null, function(content) {
-	document.getElementsByClassName('sidebar')[0].innerHTML = content;
-  });
+    document.getElementsByClassName('sidebar')[0].innerHTML =
+        '';
 }
 
-//render top bar
 
 attachMIcon('svg_icon', 0.05, 0.05);
-
-
-//render sidebar
+top_bar_render()
+sidebar_render()
 
 
 
