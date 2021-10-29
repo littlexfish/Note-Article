@@ -10,7 +10,6 @@ function replaceArticle(title, htmlElement) {
 function loadHtmlFromJson() {
     let queryString = new URLSearchParams(window.location.search);
     let id = queryString.get('id');
-    id = '-1';
     if (id === undefined || id === null) {
         return;
     }
