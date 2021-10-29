@@ -1,6 +1,6 @@
 
 
-.html {
+html {
     font-family: 'Noto Sans TC', sans-serif;
 }
 
@@ -18,6 +18,7 @@ a, button {
     height: 50px;
     z-index: 1;
     position: fixed;
+    background-color: #4477EE;
     top: 0;
     left: 0;
 }
@@ -41,7 +42,6 @@ a, button {
     margin: 0;
     padding: 0;
     background-color: #47E;
-    overflow: hidden;
 }
 
 .top_bar ul li {
@@ -53,6 +53,7 @@ a, button {
 	
 	
 }
+
 
 .article_list .list_category, .article_list .list_article {
     margin-left: 40px;
@@ -78,7 +79,7 @@ ul.category_ul li a, ul.article_ul li a {
     display: block;
     text-decoration: none;
     width: fit-content;
-    padding: 2px 6px;
+    padding: 2px 14px;
 }
 
 ul.category_ul li a:hover, ul.article_ul li a:hover {
@@ -97,12 +98,19 @@ ul.category_ul li a:hover, ul.article_ul li a:hover {
     padding: 5px 13px;
 }
 
+.list button:disabled {
+    color: #FFF;
+    background-color: #AAA;
+}
+
 .text .article {
 	
 }
 
 
 .bottom_block {
-	
-	
+	/*height: 500px;*/
+    /*width: 100%;*/
+    /*background-color: #4477EE;*/
+	/*margin-top: 50px;*/
 }

@@ -130,6 +130,14 @@ function linkToParentCategory() {
 
 }
 
+function closeRootButton() {
+    let queryString = new URLSearchParams(window.location.search);
+    let category = queryString.get('category');
 
-// loadList();
+    if(category === undefined || category === null) {
+        document.getElementsByClassName("back_button")[0].disabled = true;
+    }
+}
 
+loadList();
+closeRootButton();
