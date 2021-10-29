@@ -1,3 +1,4 @@
+
 function replaceArticle(title, htmlElement) {
     let article = document.getElementsByClassName('article')[0];
 
@@ -9,6 +10,7 @@ function replaceArticle(title, htmlElement) {
 function loadHtmlFromJson() {
     let queryString = new URLSearchParams(window.location.search);
     let id = queryString.get('id');
+    id = '-1';
     if (id === undefined || id === null) {
         return;
     }
@@ -19,44 +21,72 @@ function loadHtmlFromJson() {
 
         let json = JSON.parse(content);
 
-        let ret = '<div class="article_title">' + json['title'] + '</div>';
-        ret += '<div class="article_keywords" style="font-size: 6px;">' + json['keywords'] + '</div>';
+        let article = document.getElementsByClassName('article')[0];
+
+        document.title = json['title'];
+        article.innerHTML = '<div class="article_title">' + json['title'] + '</div>';
+        article.innerHTML += '<div class="article_keywords">' + json['keywords'].toString().replace(',', ', ') + '</div>';
 
         let contentJson = json['content'];
 
-        ret += '<div class="article_content">'
+        let other = false;
+
+        article.innerHTML += '<div class="article_content"></div>';
+        let inner = document.getElementsByClassName('article_content')[0];
         for (let i = 0; i < contentJson.length; i++) {
             let current = contentJson[i];
             let type = current['type'];
             let insert;
-            if (type === 'text') insert = getInsertText(current);
-            else if (type === 'image') insert = getInsertImage(current);
-            else if (type === 'html') insert = getInsertHtmlElement(current);
+            if (type === 'text') {
+                insert = getInsertText(current, other);
+                other = false;
+            }
+            else if (type === 'image') {
+                insert = getInsertImage(current);
+                other = true;
+            }
+            else if (type === 'html') {
+                insert = getInsertHtmlElement(current);
+                other = true;
+            }
             if (insert !== undefined) {
-                ret += insert;
+                inner.innerHTML += insert;
             }
         }
-        ret += '</div>';
-
-        replaceArticle(json['title'], ret);
     });
 }
 
 
-function getInsertText(currentJsonObj) {
+function getInsertText(currentJsonObj, isOther) {
     if (currentJsonObj['type'] !== 'text') return null;
     let textStyle = currentJsonObj['style'];
     let textText = currentJsonObj['text'];
     let wrap = currentJsonObj['wrap'];
-    let ret = '<div';
+    let ret = '';
     if (typeof textStyle === 'string') {
-        ret += ' class="' + textStyle + '"';
+        ret += '<div class="block styled" style="' + textStyle + '"' + '>';
+        ret += textText;
+        ret += '</div>';
     }
-    ret += '>' + textText;
-    if (typeof wrap === 'boolean' && wrap) {
-        ret += '<br>';
+    else {
+        if (isOther || typeof wrap === 'boolean' && wrap) {
+            ret += '<div class="block">'
+            ret += textText;
+            ret += '</div>';
+        }
+        else {
+            let blockEle = document.querySelectorAll('.block, .block.styled');
+            if(blockEle.length === 0) {
+                ret += '<div class="block">';
+                ret += textText;
+                ret += '</div>';
+            }
+            else {
+                blockEle[blockEle.length - 1].innerHTML += textText;
+            }
+        }
     }
-    ret += '</div>';
+
     return ret;
 }
 
@@ -67,7 +97,7 @@ function getInsertImage(currentJsonObj) {
     let imageAlt = currentJsonObj['alt'];
     let imageTitle = currentJsonObj['title'];
     let imageLazy = currentJsonObj['lazy'];
-    let ret = '<img';
+    let ret = '<img class="can_zoom"';
     if (typeof imageSrc === 'string') {
         ret += ' src="' + imageSrc + '"';
     }
@@ -83,6 +113,7 @@ function getInsertImage(currentJsonObj) {
     if (typeof imageLazy === 'boolean' && imageLazy) {
         ret += ' loading="lazy"';
     }
+    ret += ' onclick="showImg(\'' + imageSrc + '\',\'' + imageTitle + '\',\'' + imageAlt + '\');"';
     ret += '></img>';
     return ret;
 }
@@ -98,11 +129,14 @@ function getInsertHtmlElement(currentJsonObj) {
     }
     ret += '>';
     if (typeof needTail === 'boolean' && !needTail) {
+        let cnt = currentJsonObj['content'];
+        if (cnt !== undefined && cnt !== null) {
+            ret += cnt;
+        }
         ret += '</' + htmlElement + '>';
     }
     return ret;
 }
-
 
 function linkToCategory() {
     let queryString = new URLSearchParams(window.location.search);
@@ -128,6 +162,20 @@ function linkToCategory() {
 
 }
 
+function showImg(src, title, alt) {
+
+    let inner = document.getElementsByClassName("text")[0];
+
+    let html = '<div class="zoom_img_bk" ondblclick="closeZoomImg();"><div class="zoom_img_text">按兩下關閉</div><img class="zoom_img" alt="' + alt + '" src="' + src + '"';
+    if(title !== undefined && title !== null) html += ' title="' + title + '"';
+    html += '></img></div>';
+
+    inner.innerHTML += html;
+}
+
+function closeZoomImg() {
+    document.getElementsByClassName('zoom_img_bk')[0].remove();
+}
 
 loadHtmlFromJson();
 

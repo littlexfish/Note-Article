@@ -14,18 +14,8 @@
     {
       "id": -1,
       "name": "test",
+      "keywords": [],
       "category": "test",
-      "visible": true
-    },
-	{
-      "id": -1,
-      "name": "test1",
-      "category": "test2",
-      "visible": true
-    },
-	{
-      "id": -1,
-      "name": "test",
       "visible": true
     }
   ]

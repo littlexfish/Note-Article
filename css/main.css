@@ -4,13 +4,21 @@ html {
     font-family: 'Noto Sans TC', sans-serif;
 }
 
-a, button {
+a, button, .zoom_img {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    -webkit-user-drag: none;
 }
 
 .top_bar {
@@ -24,9 +32,10 @@ a, button {
 }
 
 .top_bar a {
-    display: block;
-    padding: 10px;
-    height: 100%;
+    display: flex;
+    padding: 0 10px;
+    height: 50px;
+    align-items: center;
     text-decoration: none;
     font-size: 25px;
     color: #FFF;
@@ -54,7 +63,6 @@ a, button {
 	
 }
 
-
 .article_list .list_category, .article_list .list_article {
     margin-left: 40px;
     margin-top: 10px;
@@ -80,6 +88,7 @@ ul.category_ul li a, ul.article_ul li a {
     text-decoration: none;
     width: fit-content;
     padding: 2px 14px;
+    color: black;
 }
 
 ul.category_ul li a:hover, ul.article_ul li a:hover {
@@ -90,12 +99,16 @@ ul.category_ul li a:hover, ul.article_ul li a:hover {
 	padding-top: 50px;
 }
 
-.list button {
+.list button, .text button {
     color: #FFF;
     background-color: #4477EE;
     border: none;
     font-size: 15px;
     padding: 5px 13px;
+}
+
+.text button {
+    margin-top: 50px;
 }
 
 .list button:disabled {
@@ -104,13 +117,72 @@ ul.category_ul li a:hover, ul.article_ul li a:hover {
 }
 
 .text .article {
-	
+	font-size: 20px;
+    margin-left: 50px;
+
 }
 
+.article .article_title {
+    margin-top: 25px;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.article div {
+    width: fit-content;
+}
+
+.article .article_content * {
+    margin: 10px 0;
+}
+
+.article .article_content div {
+    margin: 10px 0;
+}
+
+.article .article_content img {
+    margin: 10px 0 0 0;
+}
+
+.article .article_keywords {
+    margin-left: 20px;
+    margin-top: -5px;
+    font-size: 10px;
+}
+
+.article .article_content {
+    margin-top: 20px;
+    margin-left: 10px;
+}
 
 .bottom_block {
 	/*height: 500px;*/
     /*width: 100%;*/
     /*background-color: #4477EE;*/
 	/*margin-top: 50px;*/
+}
+
+.zoom_img_bk {
+    background-color: #0005;
+    align-items: center;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    overflow: auto;
+}
+
+.zoom_img_text {
+    position: fixed;
+    top: 50px;
+    right: 30px;
+    color: #000A;
+}
+
+.zoom_img {
+    display: block;
+    margin: auto;
+    overflow: auto;
 }

@@ -74,28 +74,31 @@ function parseArticleList(content) {
     let listElement = document.getElementsByClassName('article_list')[0];
 
     //list children category
+    let ret = '';
     if(categoryChildren.length !== 0) {
-        listElement.innerHTML += '<div class="list_category">'
-        listElement.innerHTML += '子分類<ul class="category_ul">';
+        ret += '<div class="list_category">'
+        ret += '子分類<ul class="category_ul">';
         for(let i = 0;i < categoryChildren.length;i++) {
             let name = categoryChildren[i];
             let urlLink = categoryUrls[i];
-            listElement.innerHTML += '<li><a href="' + urlLink + '">' + name + '</a></li>';
+            ret += '<li><a href="' + urlLink + '">' + name + '</a></li>';
         }
-        listElement.innerHTML += '</ul></div>';
+        ret += '</ul></div>';
     }
 
     //list children article
     if(articleChildren.length !== 0) {
-        listElement.innerHTML += '<div class="list_article">'
-        listElement.innerHTML += '文章<ul class="article_ul">';
+        ret += '<div class="list_article">'
+        ret += '文章<ul class="article_ul">';
         for(let i = 0;i < articleChildren.length;i++) {
             let name = articleChildren[i];
             let urlLink = articleUrls[i];
-            listElement.innerHTML += '<li><a href="' + urlLink + '">' + name + '</a></li>';
+            ret += '<li><a href="' + urlLink + '">' + name + '</a></li>';
         }
-        listElement.innerHTML += '</ul></div>';
+        ret += '</ul></div>';
     }
+
+    listElement.innerHTML = ret;
 
 }
 
