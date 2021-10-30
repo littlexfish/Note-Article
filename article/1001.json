@@ -1,0 +1,222 @@
+{
+  "title": "【JAVA筆記】網路傳輸(Socket)",
+  "keywords": ["Java", "Socket", "TCP"],
+  "content": [
+    {
+      "type": "text",
+      "class": "text_category_color",
+      "text": "一、介紹：",
+      "wrap": false
+    },
+    {
+      "type": "text",
+      "text": "要進行網路傳輸，在Java裡最簡單的方式就是使用Socket了，至於Socket詳細運作原理就自行上網查詢，這裡只講解使用的部分",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_block",
+      "text": "既然要傳輸資訊，當然要先有一個伺服器(Server)嘛，那就是ServerSocket<br>",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "text": "用法如下，傳入值放入port就可以了，port的允許值從1024到65535，至於原因自己查"
+    },
+    {
+      "type": "image",
+      "src": "https://i.imgur.com/hWptIxY.jpg"
+    },
+    {
+      "type": "text",
+      "class": "text_block",
+      "text": "現在有了伺服端了，也要有個個人端來連接嘛，用法如下，傳入值放入ip地址及port即可<br>"
+    },
+    {
+      "type": "text",
+      "text": "備註:127.0.0.1指本機",
+      "wrap": false
+    },
+    {
+      "type": "image",
+      "src": "https://i.imgur.com/JsD1A98.jpg"
+    },
+    {
+      "type": "text",
+      "class": "text_block",
+      "text": "要注意的是，一個伺服的Socket對一個個人的Socket，如果要與複數個個人端溝通，就必須請ServerSocket建立更多的Socket來與其他的個人端溝通，並且，要先使用ServerSocket.accept()，才可以在個人端呼叫new Socket(\"ip address\", port);，否則個人端將會找不到伺服器<br>"
+    },
+    {
+      "type": "text",
+      "text": "備註:呼叫ServerSocket.accept()時，程式會等到接收到個人端的連結才會繼續動作"
+    },
+    {
+      "type": "image",
+      "src": "https://i.imgur.com/TrlVwCY.jpg"
+    },
+    {
+      "type": "text",
+      "text": "(伺服端與個人端溝通另開一篇說明)"
+    },
+    {
+      "type": "text",
+      "class": "text_category_color text_block",
+      "text": "二、方法(ServerSocket)(只寫重要的)：",
+      "wrap": false
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "accept() throws IOException : Socket"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;關閉Socket",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "getInputStream() throws IOException : InputStream"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;獲取輸入流",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "getOutputStream() throws IOException : OutputStream"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;獲取輸出流",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "getPort() : int"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;獲取連接埠(port)",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "getSoTimeout() throws SocketException : int"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;獲取So Timeout時間",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "isClosed() : boolean"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;是否已被關閉",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "isConnected() : boolean"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;是否已連接",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "isInputShutdown() : boolean"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;輸入是否被關閉",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "isOutputShutdown() : boolean"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;輸出是否被關閉",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "getKeepAlive() throws SocketException : boolean"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;獲取SO_KEEPALIVE是否被啟用",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "setKeepAlive(boolean on) throws SocketException : void"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;設定SO_KEEPALIVE是否啟用",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "setSoTimeout(int timeout) throws SocketException : void"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;設定So Timeout時間(毫秒)(0為關閉)",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "shutdownInput() throws IOException : void"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;關閉輸入",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_method_color",
+      "text": "shutdownOutput()throws IOException : void"
+    },
+    {
+      "type": "text",
+      "text": "&nbsp;&nbsp;&nbsp;&nbsp;關閉輸出",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "class": "text_block text_category_color",
+      "text": "四、連結："
+    },
+    {
+      "type": "html",
+      "element": "a",
+      "attr": "href=\"https://littlexfish.github.io/Note-Article/article.html?id=1002\"",
+      "content": "運用Socket來傳輸資料",
+      "needTail": true
+    }
+  ]
+
+
+}

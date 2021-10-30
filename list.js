@@ -72,19 +72,7 @@ function parseArticleList(content) {
     }
 
     let listElement = document.getElementsByClassName('article_list')[0];
-
-    //list children category
     let ret = '';
-    if(categoryChildren.length !== 0) {
-        ret += '<div class="list_category">'
-        ret += '子分類<ul class="category_ul">';
-        for(let i = 0;i < categoryChildren.length;i++) {
-            let name = categoryChildren[i];
-            let urlLink = categoryUrls[i];
-            ret += '<li><a href="' + urlLink + '">' + name + '</a></li>';
-        }
-        ret += '</ul></div>';
-    }
 
     //list children article
     if(articleChildren.length !== 0) {
@@ -93,6 +81,18 @@ function parseArticleList(content) {
         for(let i = 0;i < articleChildren.length;i++) {
             let name = articleChildren[i];
             let urlLink = articleUrls[i];
+            ret += '<li><a href="' + urlLink + '">' + name + '</a></li>';
+        }
+        ret += '</ul></div>';
+    }
+
+    //list children category
+    if(categoryChildren.length !== 0) {
+        ret += '<div class="list_category">'
+        ret += '子分類<ul class="category_ul">';
+        for(let i = 0;i < categoryChildren.length;i++) {
+            let name = categoryChildren[i];
+            let urlLink = categoryUrls[i];
             ret += '<li><a href="' + urlLink + '">' + name + '</a></li>';
         }
         ret += '</ul></div>';

@@ -2,12 +2,24 @@
   "category": [
     {
       "name": "test",
-      "visible": true
+      "visible": false
     },
     {
       "name": "test2",
       "visible": true,
       "parent": "test"
+    },
+    {
+      "name": "Java筆記",
+      "visible": true
+    },
+    {
+      "name": "Java內建",
+      "visible": true
+    },
+    {
+      "name": "Android筆記",
+      "visible": true
     }
   ],
   "article": [
@@ -16,6 +28,23 @@
       "name": "test",
       "keywords": [],
       "category": "test",
+      "visible": true
+    },
+    {
+      "id": 0,
+      "name": "關於筆記",
+      "visible": true
+    },
+    {
+      "id": 1000,
+      "name": "【JAVA 筆記】關於JAVA筆記的一些事",
+      "category": "Java筆記",
+      "visible": true
+    },
+    {
+      "id": 1001,
+      "name": "【JAVA筆記】網路傳輸(Socket)",
+      "category": "Java內建",
       "visible": true
     }
   ]

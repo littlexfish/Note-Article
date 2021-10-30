@@ -54,12 +54,17 @@ function attachMIcon(className = 'svg_icon', scaleX = 1, scaleY = 1) {
 
 }
 
-function getFileContent(path, mimeType, callback) { //callback need content as parameter
+function getFileContent(path, mimeType, callback, otherCallback = null) { //callback need content as parameter
     let xmlhttp = new XMLHttpRequest();
     if (mimeType !== null) xmlhttp.overrideMimeType(mimeType);
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
             callback(xmlhttp.responseText);
+        }
+        else if(xmlhttp.readyState === 4) {
+            if(otherCallback !== undefined && otherCallback !== null) {
+                otherCallback(xmlhttp.status);
+            }
         }
     }
     xmlhttp.open("GET", path, true);

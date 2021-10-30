@@ -4,7 +4,11 @@ html {
     font-family: 'Noto Sans TC', sans-serif;
 }
 
-a, button, .zoom_img {
+* {
+    overflow: hidden;
+}
+
+a, button, .zoom_img, .zoom_img_text, .article .article_keywords {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -19,6 +23,10 @@ a {
 
 img {
     -webkit-user-drag: none;
+}
+
+body {
+    background-color: #69F1;
 }
 
 .top_bar {
@@ -59,8 +67,8 @@ img {
 }
 
 .sidebar {
-	
-	
+
+
 }
 
 .article_list .list_category, .article_list .list_article {
@@ -74,6 +82,7 @@ img {
     color: black;
     list-style-type: none;
     margin: 0;
+    width: fit-content;
     padding-left: 20px;
     overflow: hidden;
     font-size: 17px;
@@ -86,7 +95,7 @@ ul.category_ul li, ul.article_ul li {
 ul.category_ul li a, ul.article_ul li a {
     display: block;
     text-decoration: none;
-    width: fit-content;
+    width: 100%;
     padding: 2px 14px;
     color: black;
 }
@@ -116,45 +125,6 @@ ul.category_ul li a:hover, ul.article_ul li a:hover {
     background-color: #AAA;
 }
 
-.text .article {
-	font-size: 20px;
-    margin-left: 50px;
-
-}
-
-.article .article_title {
-    margin-top: 25px;
-    font-size: 40px;
-    font-weight: 700;
-}
-
-.article div {
-    width: fit-content;
-}
-
-.article .article_content * {
-    margin: 10px 0;
-}
-
-.article .article_content div {
-    margin: 10px 0;
-}
-
-.article .article_content img {
-    margin: 10px 0 0 0;
-}
-
-.article .article_keywords {
-    margin-left: 20px;
-    margin-top: -5px;
-    font-size: 10px;
-}
-
-.article .article_content {
-    margin-top: 20px;
-    margin-left: 10px;
-}
-
 .bottom_block {
 	/*height: 500px;*/
     /*width: 100%;*/
@@ -162,27 +132,3 @@ ul.category_ul li a:hover, ul.article_ul li a:hover {
 	/*margin-top: 50px;*/
 }
 
-.zoom_img_bk {
-    background-color: #0005;
-    align-items: center;
-    position: fixed;
-    top: 50px;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 2;
-    overflow: auto;
-}
-
-.zoom_img_text {
-    position: fixed;
-    top: 50px;
-    right: 30px;
-    color: #000A;
-}
-
-.zoom_img {
-    display: block;
-    margin: auto;
-    overflow: auto;
-}

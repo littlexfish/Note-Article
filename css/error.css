@@ -1,0 +1,17 @@
+
+
+.error_code {
+    position: fixed;
+    margin-top: 25px;
+    font-size: 100px;
+    font-weight: 1000;
+    color: #F55;
+}
+
+.error_content {
+    position: fixed;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 150px;
+    color: #F55;
+}

@@ -1,0 +1,24 @@
+{
+  "title": "【JAVA 筆記】關於JAVA筆記的一些事",
+  "keywords": ["Java"],
+  "content": [
+    {
+      "type": "text",
+      "text": "這個資料夾會放有關JAVA的一些程式碼，我會盡量寫，但仍以我自己看得懂為主，純粹以以免忘記為前提來更新這個資料夾的內容",
+      "wrap": false
+    },
+    {
+      "type": "text",
+      "class": "text_block",
+      "text": "筆記內容會是一些比較進階的東西，沒學過JAVA的先把基礎學完再看吧，這個資料夾的內容會因為我查的資料而持續更新",
+      "wrap": true
+    },
+    {
+      "type": "text",
+      "text": "備註: 除了\"JAVA內建\"以外之資料夾的筆記皆為需要另外加入外部函式庫(Library)，可以依據官方提供的方法加入至自己的專案中",
+      "wrap": true
+    }
+  ]
+
+
+}
