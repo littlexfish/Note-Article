@@ -50,6 +50,7 @@
 
 .article div {
     width: fit-content;
+    width: -moz-fit-content;
 }
 
 .article .article_content * {

@@ -83,6 +83,7 @@ body {
     list-style-type: none;
     margin: 0;
     width: fit-content;
+    width: -moz-fit-content;
     padding-left: 20px;
     overflow: hidden;
     font-size: 17px;

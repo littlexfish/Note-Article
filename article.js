@@ -157,7 +157,7 @@ function linkToCategory() {
         for(let i = 0;i < articleJson.length;i++) {
             let idJson = articleJson[i]['id'];
             let cate = articleJson[i]['category'];
-            if(idJson === id) {
+            if(idJson === parseInt(id)) {
                 if(cate === undefined || cate === null) linkToAbsolute('list.html');
                 else linkToAbsolute('list.html?category=' + cate);
                 return;
@@ -179,11 +179,6 @@ function showImg(src, alt) {
     console.log(inner.style)
 
 
-}
-
-function syncDelay(milliseconds){
-    let start = new Date().getTime();
-    while( (new Date().getTime()-start) < milliseconds);
 }
 
 function closeZoomImg() {
