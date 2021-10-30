@@ -49,8 +49,8 @@
 }
 
 .article div {
-    width: fit-content;
     width: -moz-fit-content;
+    width: fit-content;
 }
 
 .article .article_content * {
@@ -185,8 +185,3 @@
         transform: scale(1, 1);
     }
 }
-
-/*.zoom_img:focus-visible {*/
-/*    transition: padding-top 1s;*/
-/*    padding-top: 0;*/
-/*}*/

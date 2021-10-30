@@ -15,7 +15,8 @@
     },
     {
       "name": "Java內建",
-      "visible": true
+      "visible": true,
+      "parent": "Java筆記"
     },
     {
       "name": "Android筆記",

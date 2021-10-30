@@ -1,0 +1,136 @@
+
+body {
+    background-color: #69F1;
+}
+
+.top_bar {
+    background-color: #4477EE;
+}
+
+.top_bar a {
+    color: #FFF;
+}
+
+.top_bar a.choose:hover {
+    background-color: #58F;
+}
+
+.top_bar ul {
+    background-color: #47E;
+}
+
+.article_list .list_category, .article_list .list_article {
+    color: #4477EE;
+}
+
+.list_category ul.category_ul, .list_article ul.article_ul {
+    color: black;
+}
+
+ul.category_ul li a, ul.article_ul li a {
+    color: black;
+}
+
+ul.category_ul li a:hover, ul.article_ul li a:hover {
+    background-color: #DDF;
+}
+
+.list button, .text button {
+    color: #FFF;
+    background-color: #4477EE;
+}
+
+.list button:disabled {
+    color: #FFF;
+    background-color: #AAA;
+}
+
+/* text class */
+
+.text_category_color {
+    color: #36E;
+}
+
+.text_method_color {
+    color: #F0F;
+}
+
+
+/* other */
+.article a {
+    color: #6AF;
+}
+
+.article a:hover {
+    background-color: #58F2;
+    color: #49E;
+}
+
+.article a:active {
+    background-color: #58F3;
+    color: #38D;
+}
+
+.article::-webkit-scrollbar {
+    background-color: #0000;
+}
+
+.article::-webkit-scrollbar-track {
+    background-color: #0002;
+}
+
+.article::-webkit-scrollbar-button {
+    background-color: #0000;
+}
+
+.article::-webkit-scrollbar-thumb {
+    background-color: #7AFA;
+}
+
+.article::-webkit-scrollbar-thumb:hover {
+    background-color: #59FA;
+}
+
+.article::-webkit-scrollbar-thumb:active {
+    background-color: #58FE;
+}
+
+.zoom_img_bk {
+    background-color: #0005;
+}
+
+.zoom_img_bk::-webkit-scrollbar {
+    background-color: #0000;
+}
+
+.zoom_img_bk::-webkit-scrollbar-track {
+    background-color: #0000;
+}
+
+.zoom_img_bk::-webkit-scrollbar-button {
+    background-color: #0000;
+}
+
+.zoom_img_bk::-webkit-scrollbar-corner {
+    background-color: #0000;
+}
+
+.zoom_img_bk::-webkit-scrollbar-thumb {
+    background-color: #58F5;
+}
+
+.zoom_img_bk::-webkit-scrollbar-thumb:hover {
+    background-color: #58FB;
+}
+
+.zoom_img_bk::-webkit-scrollbar-thumb:active {
+    background-color: #58F;
+}
+
+.zoom_img_text {
+    color: #0005;
+}
+
+.zoom_img_text:hover {
+    color: #000A;
+}

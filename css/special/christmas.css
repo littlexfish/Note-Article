@@ -1,0 +1,87 @@
+
+.halloween_text {
+    position: fixed;
+    color: #3D3;
+    background-color: #FAA;
+    border-radius: 10px;
+    padding: 0 10px;
+    right: 5px;
+    top: 15px;
+    z-index: 2;
+    font-size: 25px;
+    transform: rotateZ(5deg);
+}
+
+body {
+    background-color: #DFD3;
+}
+
+.top_bar ul {
+    background-color: #F55;
+}
+
+.top_bar a.choose:hover {
+    background-color: #8D8D;
+}
+
+.article_list .list_category, .article_list .list_article {
+    color: #F55;
+}
+
+ul.category_ul li a:hover, ul.article_ul li a:hover {
+    background-color: #FDD;
+}
+
+.list button, .text button {
+    background-color: #8D8;
+}
+
+.text_category_color {
+    color: #F55;
+}
+
+.article a {
+    color: #F55;
+}
+
+.article a:hover {
+    background-color: #5D52;
+    color: #F22;
+}
+
+.article a:active {
+    background-color: #5D54;
+    color: #F00;
+}
+
+.article::-webkit-scrollbar-track {
+    background-color: #5D52;
+}
+
+.article::-webkit-scrollbar-track:hover {
+    background-color: #D552;
+}
+
+.article::-webkit-scrollbar-thumb {
+    background-color: #F552;
+}
+
+.article::-webkit-scrollbar-thumb:hover {
+    background-color: #5F55;
+}
+
+.article::-webkit-scrollbar-thumb:active {
+    background-color: #F55A;
+}
+
+.zoom_img_bk::-webkit-scrollbar-thumb {
+    background-color: #F552;
+}
+
+.zoom_img_bk::-webkit-scrollbar-thumb:hover {
+    background-color: #5F55;
+}
+
+.zoom_img_bk::-webkit-scrollbar-thumb:active {
+    background-color: #F558;
+}

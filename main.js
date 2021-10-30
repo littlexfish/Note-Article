@@ -85,7 +85,6 @@ function sidebar_render() {
         '';
 }
 
-
 attachMIcon('svg_icon', 0.05, 0.05);
 top_bar_render()
 sidebar_render()
